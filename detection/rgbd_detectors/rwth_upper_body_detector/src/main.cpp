@@ -444,6 +444,11 @@ int main(int argc, char **argv)
     private_node_handle_.param("depth_image", topic_depth_image, string("/depth/image_rect"));
     topic_depth_image = cam_ns + topic_depth_image;
 
+    ROS_INFO_STREAM("Ground plane: " << topic_gp.c_str());
+    ROS_INFO_STREAM("Color image: " << topic_color_image.c_str());
+    ROS_INFO_STREAM("Camera info depth: " << topic_camera_info.c_str());
+    ROS_INFO_STREAM("Depth image: " << topic_depth_image.c_str());
+
     // New parameters for SPENCER
     private_node_handle_.param("detection_id_increment", detection_id_increment, 1);
     private_node_handle_.param("detection_id_offset",    detection_id_offset, 0);
@@ -529,6 +534,7 @@ int main(int argc, char **argv)
     private_node_handle_.param("upper_body_roi", pub_topic_roi, string("/upper_body_detector/roi"));
     pub_roi = it.advertise(pub_topic_roi.c_str(), 1, image_cb, image_cb);
 
+    ROS_INFO_STREAM("Initialised upper body detector");
     // Start ros thread managment
     ros::spin();
 

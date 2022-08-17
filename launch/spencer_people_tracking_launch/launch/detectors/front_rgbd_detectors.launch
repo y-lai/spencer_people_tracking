@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <launch>
     <arg name="upper_body" default="true"/>
     <arg name="pcl_detector" default="false"/> <!-- do not use at the same time with upper-body detector! -->

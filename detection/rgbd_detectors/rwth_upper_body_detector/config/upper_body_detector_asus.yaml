@@ -58,7 +58,7 @@ upper_body_detector:
     #======================
     # Depth scale
     #======================
-    DEPTH_SCALE: 1.0
+    DEPTH_SCALE: 1000.0
 
     #===========================
     # height and width of images
