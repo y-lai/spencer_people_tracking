@@ -9,6 +9,7 @@
     <arg name="queue_size" default="5" />
     <arg name="camera_namespace" default="/head_xtion" />
 
+    <arg name="compressed" default="true" />
     <!-- input topic names, can either be configured via these args or via remappings -->
     <arg name="ground_plane" default="/ground_plane" />
     <!-- <arg name="depth_image" default="/depth/image_rect" /> -->
@@ -32,7 +33,8 @@
 
     <rosparam command="load" file="$(arg config_file)" if="$(arg load_params_from_file)"/>
     <rosparam command="load" file="$(arg template_file)" if="$(arg load_params_from_file)"/>
- 
+
+    <!-- <node pkg="rwth_upper_body_detector" type="upper_body_detector" name="upper_body_detector" clear_params="true" output="screen" respawn="true"> -->
     <node pkg="rwth_upper_body_detector" type="upper_body_detector" name="upper_body_detector" output="screen" args="_image_transport:=compressed" clear_params="true" respawn="true">
         <param name="queue_size" value="$(arg queue_size)" type="int"/>
         <param name="camera_namespace" value="$(arg camera_namespace)" type="string"/>

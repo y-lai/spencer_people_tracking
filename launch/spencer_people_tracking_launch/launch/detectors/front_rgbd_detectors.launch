@@ -7,15 +7,19 @@
     <arg name="ground_plane" value="/spencer/sensors/rgbd_front_top/ground_plane"/>
     <arg name="base_footprint_frame_id" default="base_footprint"/>
     <arg name="detection_id_increment" default="20"/>
+    <arg name="camera_frame_prefix" default="/spencer/sensors" />
+    <arg name="depth_image_topicname" default="/depth/image_rect_raw" />
+    <arg name="rgb_image_topicname" default="/color/image_raw" />
+    <arg name="compressed_transport" default="true" /> <!-- to use compressed image transport -->
 
     <group ns="/spencer/perception_internal/people_detection">
 
         <!-- RWTH tf based groundplane -->
         <node pkg="rwth_ground_plane" type="ground_plane_tf_based_fixed" name="ground_plane_front_top" output="screen">
             <param name="base_footprint" value="$(arg base_footprint_frame_id)" type="string"/>
-            <param name="camera_frame" value="rgbd_front_top_depth_optical_frame" type="string"/>
+            <param name="camera_frame" value="$(arg camera_frame_prefix)/rgbd_front_top_depth_optical_frame" type="string"/>
             <param name="ground_plane" value="$(arg ground_plane)" type="string"/>
-            <param name="rate" value="30.0"/>
+            <param name="rate" value="10.0"/>
         </node>
 
         <!-- Front RGB-D upper body -->
@@ -28,6 +32,9 @@
             <arg name="ground_plane" value="$(arg ground_plane)" />
             <arg name="detection_id_offset" value="3"/>
             <arg name="detection_id_increment" value="$(arg detection_id_increment)"/>
+            <arg name="depth_image" value="$(arg depth_image_topicname)" />
+            <arg name="rgb_image" value="$(arg rgb_image_topicname)" />
+            <arg name="compressed" value="$(arg compressed_transport)" />
         </include>
 
         <!-- Front PCL detector (publishes on same topic as upper-body detector) -->

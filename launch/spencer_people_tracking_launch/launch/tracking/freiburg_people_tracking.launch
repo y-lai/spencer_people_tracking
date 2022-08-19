@@ -14,6 +14,12 @@
     <arg name="base_footprint_frame_id" default="base_footprint"/>
     <arg name="world_frame_id" default="odom"/>
 
+    <arg name="static_base" default="true" />
+
+
+    <group ns="/spencer" if="$(arg static_base)" >
+        <node pkg="tf" type="static_transform_publisher" name="static_odom_pub" args="0 0 0 0 0 0 1 kmp200_base_link odom 15" />
+    </group>
     
     <!-- Detection-to-detection fusion pipeline. NOTE: Detectors need to be launched separately via
          roslaunch spencer_people_tracking_launch front_rgbd_detectors.launch

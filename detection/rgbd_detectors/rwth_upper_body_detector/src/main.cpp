@@ -265,7 +265,7 @@ void callback(const ImageConstPtr &depth, const GroundPlane::ConstPtr &gp, const
     Vector<Vector< double > > detected_bounding_boxes;
     //detector->visualize_roi = true;
     detector->ProcessFrame(camera, matrix_depth, point_cloud, *upper_body_template, detected_bounding_boxes);
-    
+    ROS_INFO_STREAM("Detected bounding box size: " << detected_bounding_boxes.getSize());
     // Generate messages
     UpperBodyDetector detection_msg;
     detection_msg.header = depth->header;
